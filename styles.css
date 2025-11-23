@@ -4,24 +4,27 @@
 :root {
     --primary: #007BA7;   /* Cerulean Blue */
     --accent: #FF4FA3;    /* Pink accent */
-    --bg-dark: #0A0C0D;   /* Main background */
-    --bg-card: #111315;   /* Card background */
-    --text-light: #E8EAED;
-    --text-muted: #A0A3A8;
+
+    --bg-light: #E5E5E7;  /* Light gray main background */
+    --bg-darkgray: #1C1C1E; /* Banner/header dark gray */
+
+    --bg-card: #FFFFFF;   /* White cards for readability */
+    --text-dark: #1A1A1C;
+    --text-muted: #555;
 }
 
 body {
     margin: 0;
-    font-family: 'Lexend', sans-serif;  /* Updated font */
-    background: var(--bg-dark);
-    color: var(--text-light);
+    font-family: 'Lexend', sans-serif;
+    background: var(--bg-light);
+    color: var(--text-dark);
 }
 
-/* Header */
+/* Header / Banner */
 header {
-    background: #000000;
+    background: var(--bg-darkgray);
     padding: 15px 0;
-    border-bottom: 1px solid var(--primary);
+    border-bottom: 2px solid var(--primary);
 }
 
 header .container {
@@ -44,7 +47,7 @@ nav ul {
 }
 
 nav a {
-    color: var(--text-light);
+    color: #EEE;
     text-decoration: none;
     font-weight: 500;
 }
@@ -53,17 +56,17 @@ nav a:hover {
     color: var(--accent);
 }
 
-/* Hero */
+/* Hero (still dark so text stays readable) */
 .hero {
     height: 70vh;
     background: linear-gradient(
-        rgba(0, 0, 0, 0.7), 
-        rgba(0, 0, 0, 0.7)
+        rgba(0, 0, 0, 0.65), 
+        rgba(0, 0, 0, 0.65)
     ),
     url('https://images.unsplash.com/photo-1555949963-aa79dcee981d?auto=format&fit=crop&w=1600&q=80')
     center/cover no-repeat;
 
-    color: var(--text-light);
+    color: white;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -74,14 +77,23 @@ nav a:hover {
     font-size: 2.8rem;
     margin-bottom: 10px;
     color: var(--primary);
-    font-weight: 600;
 }
 
 .hero p {
     color: var(--accent);
-    font-weight: 400;
 }
 
+/* General section styling */
+.section {
+    padding: 60px 10%;
+    text-align: center;
+}
+
+.alt-bg {
+    background: #D9D9DC;  /* Slightly darker light gray */
+}
+
+/* BUTTON */
 .btn-primary {
     background: var(--primary);
     color: white;
@@ -89,9 +101,74 @@ nav a:hover {
     border-radius: 4px;
     text-decoration: none;
     font-weight: 500;
-    border: 1px solid var(--primary);
+    border: none;
 }
 
 .btn-primary:hover {
     background: var(--accent);
-    border-color: var(--accent);
+}
+
+/* SERVICES: Side-by-side layout */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 across on desktop */
+    gap: 25px;
+}
+
+@media (max-width: 900px) {
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 across on tablets */
+    }
+}
+
+@media (max-width: 600px) {
+    .services-grid {
+        grid-template-columns: 1fr; /* 1 across on mobile */
+    }
+}
+
+.service-card {
+    background: var(--bg-card);
+    padding: 25px;
+    border-radius: 8px;
+    border: 1px solid #DDD;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    text-align: left;
+}
+
+.service-card h3 {
+    margin-top: 0;
+    color: var(--primary);
+    font-weight: 600;
+}
+
+.service-card p {
+    color: var(--text-muted);
+}
+
+/* Contact Form */
+.contact-form {
+    max-width: 500px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.contact-form input, .contact-form textarea {
+    padding: 12px;
+    background: #FFF;
+    border: 1px solid #CCC;
+    border-radius: 6px;
+    color: var(--text-dark);
+}
+
+/* Footer */
+footer {
+    background: var(--bg-darkgray);
+    color: #EEE;
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+    border-top: 2px solid var(--primary);
+}
