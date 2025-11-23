@@ -1,0 +1,29 @@
+name: Contact Form Submission
+
+on:
+  repository_dispatch:
+    types: [contact_form_submission]
+
+jobs:
+  send_email:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Send email via Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      - name: Send Email
+        run: |
+          npm install nodemailer
+          node send-email.js
+        env:
+          EMAIL_HOST: ${{ secrets.EMAIL_HOST }}
+          EMAIL_PORT: ${{ secrets.EMAIL_PORT }}
+          EMAIL_USER: ${{ secrets.EMAIL_USER }}
+          EMAIL_PASS: ${{ secrets.EMAIL_PASS }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+          FORM_NAME: ${{ github.event.client_payload.name }}
+          FORM_EMAIL: ${{ github.event.client_payload.email }}
+          FORM_MESSAGE: ${{ github.event.client_payload.message }}
